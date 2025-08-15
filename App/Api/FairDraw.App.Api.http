@@ -1,0 +1,19 @@
+@FairDraw.App.Api_HostAddress = http://localhost:5049
+@competitionId = 00000000-0000-0000-0000-000000000000
+
+### Create new competition
+# Note: You'll need to add an Authorization header depending on your auth setup
+POST {{FairDraw.App.Api_HostAddress}}/api/admin/competitions
+Content-Type: application/json
+Authorization: {{bearerToken}}
+
+{
+  "title": "My Test Competition"
+}
+
+### Get competition by ID
+# Note: Replace the competitionId with an actual ID from your database
+# or use the ID returned from the POST request above
+GET {{FairDraw.App.Api_HostAddress}}/api/admin/competitions/{{competitionId}}
+Authorization: {{bearerToken}}
+Accept: application/json
