@@ -1,10 +1,18 @@
 using FairDraw.App.Core.Validators;
+using FairDraw.App.Infrastructure;
+using FairDraw.App.Infrastructure.Interfaces;
+using FairDraw.App.Infrastructure.Repositories;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
+
+builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<ICompetitionsRepository, CompetitionsRepository>();
 
 builder.Services.AddAuthentication(options =>
 {
@@ -18,7 +26,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddControllers();
 
-builder.Services.AddAutoMapper(x => x.AddMaps([nameof(Program)]));
+builder.Services.AddAutoMapper(x => x.AddMaps(typeof(Program).Assembly));
 
 builder.Services.AddValidatorsFromAssemblyContaining<NewCompetitionRequestValidator>();
 
