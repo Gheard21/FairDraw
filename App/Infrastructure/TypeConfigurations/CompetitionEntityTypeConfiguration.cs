@@ -12,6 +12,8 @@ namespace FairDraw.App.Infrastructure.TypeConfigurations
             builder.Property(c => c.Title)
                 .IsRequired()
                 .HasMaxLength(100);
+            builder.Property(c => c.DateCreated)
+                .IsRequired();
         }
     }
 }
