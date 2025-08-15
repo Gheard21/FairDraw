@@ -2,7 +2,6 @@
 using FairDraw.App.Core.Entities;
 using FairDraw.App.Core.Requests;
 using FairDraw.App.Core.Responses;
-using FairDraw.App.Core.Validators;
 using FairDraw.App.Infrastructure.Interfaces;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
